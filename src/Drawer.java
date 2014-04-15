@@ -69,13 +69,15 @@ class Drawer extends JPanel implements MouseListener {
 	}
 
 	public void printDrawing() {
+		System.out.println();
 		System.out.print("{");
 		for (int x = 0; x < nrOfColumns; x++) {
 			System.out.print("{");
-			for (int y = 0; y < nrOfRows; y++) {
+			//axis of MetaChess is in lower left corner
+			for (int y = nrOfRows-1; y >= 0; y--) {
 				System.out.print(drawing[x][y]);
 				// seperate with comma, except last
-				if (y != nrOfRows - 1)
+				if (y != 0)
 					System.out.print(',');
 			}
 			System.out.print("}");
@@ -95,9 +97,8 @@ class Drawer extends JPanel implements MouseListener {
 		// convert coordinates to column and row
 		int i = (int)Math.floor((float)x/(float)sizeOfTile);
 		int j =(int) Math.floor((float)y/(float)sizeOfTile);
-		System.out.println(i+ " " + j);
 		//flip color
-		if(i<nrOfColumns && j<nrOfRows&& i>0 && j>0)
+		if(i<nrOfColumns && j<nrOfRows&& i>=0 && j>=0)
 		drawing[i][j]=(drawing[i][j]+1)%2;
 		repaint();
 	}
