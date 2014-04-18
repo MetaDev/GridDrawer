@@ -24,8 +24,8 @@ public class Main {
 	    drawer.setFocusable(true);
 	    window.getContentPane().addMouseListener(drawer);
 	    buttonFrame.add(new PrintButton(drawer));
-	    buttonFrame.add(new SaveButton(drawer,window));
-	    buttonFrame.add(new LoadButton(drawer,window));
+	    buttonFrame.add(new SaveButton(drawer));
+	    buttonFrame.add(new LoadButton(drawer));
 	    mainframe.add(drawer);
 
 	    mainframe.add(buttonFrame);

@@ -74,36 +74,26 @@ class Drawer extends JPanel implements MouseListener {
 		drawing[i][j] = color;
 	}
 
-	 public int[][] stringToDrawing(String text){
-		 System.out.println(text);
-	 //delete first and last bracket
-	 String temp = text.substring(1, text.length()-2);
-	 System.out.println(temp);
-	 String[] rows = temp.split("\n");
-	 System.out.println(rows.length);
-	 int[][] drawing=null;
-	 int i=0;
-	 int j=0;
-	 for(String row:rows){
-		 i=0;
-		 //eg {0,0,1,0,0},
-		 //remove last all {,}and ','
-		 row= row.replaceAll("[^\\d.]", "");
-		 //remove last
-		 System.out.println(row);
-		 for(char c: row.toCharArray()){
+	public int[][] stringToDrawing(String text) {
+		String[] rows = text.split("\n");
+		int[][] drawing = null;
+		for (int i = 0; i < rows.length; i++) {
 			
-			 if(drawing==null){
-				 drawing = new int[row.length()][row.length()];
-			 }
-			 drawing[i][j]=Integer.parseInt(c+"");
-			 i++;
-		 }
-		 j++;
-	 }
-	 return drawing;
-	 }
-	public String drawingToString(int[][] drawing) {
+			String row = rows[i];
+			for (int j = 0; j < rows.length; j++) {
+				if (drawing == null) {
+					drawing = new int[rows.length][rows.length];
+				}
+				char c = row.toCharArray()[j];
+				drawing[j][i] = Integer.parseInt(c + "");
+			}
+
+		}
+
+		return drawing;
+	}
+
+	public String printDrawing(int[][] drawing) {
 		String drawingString = "";
 		drawingString += "{";
 		for (int y = 0; y < drawingSize; y++) {
@@ -126,9 +116,21 @@ class Drawer extends JPanel implements MouseListener {
 		return drawingString;
 	}
 
+	public String drawingToString(int[][] drawing) {
+		String drawingString = "";
+		for (int y = 0; y < drawingSize; y++) {
+			for (int x = 0; x < drawingSize; x++) {
+				drawingString += (drawing[x][y]);
+			}
+			if (y != drawingSize - 1)
+				drawingString += '\n';
+		}
+		return drawingString;
+	}
+
 	public void printDrawing() {
 		System.out.println("New Drawing: \n");
-		System.out.println(drawingToString(drawing));
+		System.out.println(printDrawing(drawing));
 	}
 
 	@Override
