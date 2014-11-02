@@ -79,8 +79,8 @@ class Drawer extends JPanel implements MouseListener {
 		int[][] drawing = null;
 		for (int i = 0; i < rows.length; i++) {
 			
-			String row = rows[i];
-			for (int j = 0; j < rows.length; j++) {
+			String row = rows[rows.length-1-i];
+			for (int j = 0; j <rows.length ; j++) {
 				if (drawing == null) {
 					drawing = new int[rows.length][rows.length];
 				}
@@ -120,7 +120,7 @@ class Drawer extends JPanel implements MouseListener {
 		String drawingString = "";
 		for (int y = 0; y < drawingSize; y++) {
 			for (int x = 0; x < drawingSize; x++) {
-				drawingString += (drawing[x][y]);
+				drawingString += (drawing[x][drawingSize-1-y]);
 			}
 			if (y != drawingSize - 1)
 				drawingString += '\n';
