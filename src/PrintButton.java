@@ -32,7 +32,7 @@ public void mouseExited(MouseEvent e) {
 
 @Override
 public void mousePressed(MouseEvent e) {
-	drawer.printDrawing();
+	drawer.printDrawingHex();
 }
 
 @Override
